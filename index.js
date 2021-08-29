@@ -1,8 +1,8 @@
 const fastify = require('fastify')({ logger: false })
 fastify.register(require('fastify-cors'), { origin: true })
-fastify.register(require('fastify-jwt'), {
-    secret: process.env.SECRET
-})
+    // fastify.register(require('fastify-jwt'), {
+    //     secret: process.env.SECRET
+    // })
 
 function handle(conn, req) {
     conn.pipe(conn) // creates an echo server
