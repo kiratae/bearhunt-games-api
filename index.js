@@ -55,14 +55,14 @@ try {
 
 const start = async() => {
     try {
-        const PORT = process.env.PORT || 3000;
-        await fastify.listen(PORT);
+        const PORT = process.env.PORT || 3000
+        await fastify.listen(PORT, '0.0.0.0')
 
-        console.log(`Server running at http://localhost:${PORT}`);
+        console.log(`Server running at http://localhost:${PORT}`)
     } catch (err) {
-        fastify.log.error(err);
-        process.exit(1);
+        fastify.log.error(err)
+        process.exit(1)
     }
-};
+}
 
-start();
+start()
