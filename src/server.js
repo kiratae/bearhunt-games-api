@@ -1,5 +1,22 @@
 const fastify = require('fastify')({ logger: false })
-fastify.register(require('fastify-cors'), { origin: true })
+
+fastify.register(require('./routes/router'));
+
+fastify.register(require('fastify-cors'), {
+        origin: (origin, cb) => {
+            if (/localhost/.test(origin)) {
+                //  Request from localhost will pass
+                cb(null, true)
+                return
+            } else if (/netlify/.test(origin)) {
+                //  Request from netlify will pass
+                cb(null, true)
+                return
+            }
+            // Generate an error on other origins, disabling access
+            cb(new Error("Not allowed"))
+        }
+    })
     // fastify.register(require('fastify-jwt'), {
     //     secret: process.env.SECRET
     // })
